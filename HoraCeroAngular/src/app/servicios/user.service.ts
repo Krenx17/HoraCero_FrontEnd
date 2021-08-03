@@ -43,7 +43,7 @@ export class UserService {
     let headersToken = this.headersvar.set('Authorization', this.getToken2())
     let data = JSON.stringify(usuario)
 
-    return this._http.post(this.url+'/edituser/'+usuario._id, data, {headers: headersToken})
+    return this._http.put(this.url+'/edituser/'+usuario._id, data, {headers: headersToken})
   }
 
   deletuser(id: String): Observable<any>{
@@ -58,8 +58,10 @@ export class UserService {
     return this._http.get(this.url+'/users', {headers: headersToken})
   }
 
-  oneuser(id: String): Observable<any>{
-    return this._http.get(this.url+'/oneuser/'+id, {headers: this.headersvar})
+  profile(id: any): Observable<any>{
+    let headersToken = this.headersvar.set('Authorization', this.getToken2())
+
+    return this._http.get(this.url + '/oneuser/' + id, {headers: headersToken})
   }
 
   getIdentidad(){

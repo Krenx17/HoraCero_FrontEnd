@@ -28,7 +28,7 @@ export class NoticiaService {
     let headersToken = this.headersvar.set('Authorization', this.getToken2())
     let data = JSON.stringify(noticia)
 
-    return this._http.post(this.url+'/editnews/'+noticia._id, data, {headers: headersToken})
+    return this._http.put(this.url+'/editnews/'+noticia._id, data, {headers: headersToken})
   }
 
   deletnot(id: String): Observable<any>{
@@ -41,8 +41,8 @@ export class NoticiaService {
     return this._http.get(this.url+'/news', {headers: this.headersvar})
   }
 
-  themenot(tema: String): Observable<any>{
-    return this._http.get(this.url+'/themenews', {headers: this.headersvar})
+  themenot(id: String): Observable<any>{
+    return this._http.get(this.url+'/themenews/'+id, {headers: this.headersvar})
   }
 
   onenot(id: String): Observable<any>{
@@ -61,6 +61,26 @@ export class NoticiaService {
 
   getToken2(){
     var token2 = localStorage.getItem('token')
+    if (token2 !="undefined"){
+      this.token =token2
+    }else{
+      this.token = null
+    }
+    return this.token;
+  }
+
+  getNoti(){
+    var token2 = localStorage.getItem('noticia')
+    if (token2 !="undefined"){
+      this.token =token2
+    }else{
+      this.token = null
+    }
+    return this.token;
+  }
+
+  getTheme(){
+    var token2 = localStorage.getItem('theme')
     if (token2 !="undefined"){
       this.token =token2
     }else{

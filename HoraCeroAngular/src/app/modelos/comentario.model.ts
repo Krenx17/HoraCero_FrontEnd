@@ -5,6 +5,6 @@ export class Coment{
         public user: String,
         public name: String,
         public comentario: String,
-        public fecha: Date
+        public fecha: String
     ){}
 }

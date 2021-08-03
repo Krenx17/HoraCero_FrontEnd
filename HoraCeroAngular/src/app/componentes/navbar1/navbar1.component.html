@@ -1,0 +1,380 @@
+<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+<body>
+    <div class="sidebar" *ngIf='_usuarioService.getIdentidad().rol=="User"'>
+        <!--Logo-->
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bxs-news'></i>
+                <div class="logo_name">Hora Cero</div>
+            </div>
+            <i class='bx bx-menu' id="btn" type='button'></i>
+        </div>
+        <!--Opciones del menu-->
+        <ul class="nav_list">
+            <li (click)='theme(1)'>
+                <a>
+                    <i class='bx bxs-home'></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li (click)='theme(2)'>
+                <a>
+                    <i class='bx bx-user' ></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class="tooltip">Profile</span>
+            </li>
+            <li (click)='theme(3)'>
+                <a>
+                    <i class='bx bxs-arch' ></i>
+                    <span class="links_name">Política</span>
+                </a>
+                <span class="tooltip">Política</span>
+            </li>
+            <li (click)='theme(4)'>
+                <a>
+                    <i class='bx bx-group' ></i>
+                    <span class="links_name">Social</span>
+                </a>
+                <span class="tooltip">Social</span>
+            </li>
+            <li (click)='theme(5)'>
+                <a>
+                    <i class='bx bx-baseball' ></i>
+                    <span class="links_name">Deportes</span>
+                </a>
+                <span class="tooltip">Deportes</span>
+            </li>
+            <li (click)='theme(6)'>
+                <a>
+                    <i class='bx bx-coin-stack' ></i>
+                    <span class="links_name">Economía</span>
+                </a>
+                <span class="tooltip">Economía</span>
+            </li>
+            <li (click)='theme(7)'>
+                <a>
+                    <i class='bx bx-landscape' ></i>
+                    <span class="links_name">Cultural</span>
+                </a>
+                <span class="tooltip">Cultural</span>
+            </li>
+            <li (click)='theme(8)'>
+                <a>
+                    <i class='bx bx-conversation' ></i>
+                    <span class="links_name">Farandula</span>
+                </a>
+                <span class="tooltip">Farandula</span>
+            </li>
+            <li (click)='theme(9)'>
+                <a>
+                    <i class='bx bx-atom' ></i>
+                    <span class="links_name">Ciencias</span>
+                </a>
+                <span class="tooltip">Ciencias</span>
+            </li>
+        </ul>
+        <!--Usuario ingresado-->
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">{{_usuarioService.getIdentidad().usuario}}</div>
+                        <div class="job">{{_usuarioService.getIdentidad().rol}}</div>  
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out" (click)='logout()'></i>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar" *ngIf='_usuarioService.getIdentidad().rol=="Escritor"'>
+        <!--Logo-->
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bxs-news'></i>
+                <div class="logo_name">Hora Cero</div>
+            </div>
+            <i class='bx bx-menu' id="btn" type='button'></i>
+        </div>
+        <!--Opciones del menu-->
+        <ul class="nav_list">
+            <li (click)='theme(1)'>
+                <a>
+                    <i class='bx bxs-home' ></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li (click)='theme(2)'>
+                <a>
+                    <i class='bx bx-user' ></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class="tooltip">Profile</span>
+            </li>
+            <li (click)='theme(3)'>
+                <a>
+                    <i class='bx bxs-arch' ></i>
+                    <span class="links_name">Política</span>
+                </a>
+                <span class="tooltip">Política</span>
+            </li>
+            <li (click)='theme(4)'>
+                <a>
+                    <i class='bx bx-group' ></i>
+                    <span class="links_name">Social</span>
+                </a>
+                <span class="tooltip">Social</span>
+            </li>
+            <li (click)='theme(5)'>
+                <a>
+                    <i class='bx bx-baseball' ></i>
+                    <span class="links_name">Deportes</span>
+                </a>
+                <span class="tooltip">Deportes</span>
+            </li>
+            <li (click)='theme(6)'>
+                <a>
+                    <i class='bx bx-coin-stack' ></i>
+                    <span class="links_name">Economía</span>
+                </a>
+                <span class="tooltip">Economía</span>
+            </li>
+            <li (click)='theme(7)'>
+                <a>
+                    <i class='bx bx-landscape' ></i>
+                    <span class="links_name">Cultural</span>
+                </a>
+                <span class="tooltip">Cultural</span>
+            </li>
+            <li (click)='theme(8)'>
+                <a>
+                    <i class='bx bx-conversation' ></i>
+                    <span class="links_name">Farandula</span>
+                </a>
+                <span class="tooltip">Farandula</span>
+            </li>
+            <li (click)='theme(9)'>
+                <a>
+                    <i class='bx bx-atom' ></i>
+                    <span class="links_name">Ciencias</span>
+                </a>
+                <span class="tooltip">Ciencias</span>
+            </li>
+            <li (click)='theme(10)'>
+                <a>
+                    <i class='bx bx-news' ></i>
+                    <span class="links_name">Crear Noticia</span>
+                </a>
+                <span class="tooltip">Crear Noticia</span>
+            </li>
+        </ul>
+        <!--Usuario ingresado-->
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">{{_usuarioService.getIdentidad().usuario}}</div>
+                        <div class="job">{{_usuarioService.getIdentidad().rol}}</div>  
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out" (click)='logout()'></i>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar" *ngIf='_usuarioService.getIdentidad().rol=="Admin"'>
+        <!--Logo-->
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bxs-news'></i>
+                <div class="logo_name">Hora Cero</div>
+            </div>
+            <i class='bx bx-menu' id="btn" type='button'></i>
+        </div>
+        <!--Opciones del menu-->
+        <ul class="nav_list">
+            <li (click)='theme(1)'>
+                <a>
+                    <i class='bx bxs-home' ></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li (click)='theme(2)'>
+                <a>
+                    <i class='bx bx-user' ></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class="tooltip">Profile</span>
+            </li>
+            <li (click)='theme(3)'>
+                <a>
+                    <i class='bx bxs-arch' ></i>
+                    <span class="links_name">Política</span>
+                </a>
+                <span class="tooltip">Política</span>
+            </li>
+            <li (click)='theme(4)'>
+                <a>
+                    <i class='bx bx-group' ></i>
+                    <span class="links_name">Social</span>
+                </a>
+                <span class="tooltip">Social</span>
+            </li>
+            <li (click)='theme(5)'>
+                <a>
+                    <i class='bx bx-baseball' ></i>
+                    <span class="links_name">Deportes</span>
+                </a>
+                <span class="tooltip">Deportes</span>
+            </li>
+            <li (click)='theme(6)'>
+                <a>
+                    <i class='bx bx-coin-stack' ></i>
+                    <span class="links_name">Economía</span>
+                </a>
+                <span class="tooltip">Economía</span>
+            </li>
+            <li (click)='theme(7)'>
+                <a>
+                    <i class='bx bx-landscape' ></i>
+                    <span class="links_name">Cultural</span>
+                </a>
+                <span class="tooltip">Cultural</span>
+            </li>
+            <li (click)='theme(8)'>
+                <a>
+                    <i class='bx bx-conversation' ></i>
+                    <span class="links_name">Farandula</span>
+                </a>
+                <span class="tooltip">Farandula</span>
+            </li>
+            <li (click)='theme(9)'>
+                <a>
+                    <i class='bx bx-atom' ></i>
+                    <span class="links_name">Ciencias</span>
+                </a>
+                <span class="tooltip">Ciencias</span>
+            </li>
+            <li (click)='theme(10)'>
+                <a>
+                    <i class='bx bx-news' ></i>
+                    <span class="links_name">Crear Noticia</span>
+                </a>
+                <span class="tooltip">Crear Noticia</span>
+            </li>
+            <li (click)='theme(11)'>
+                <a>
+                    <i class='bx bx-group' ></i>
+                    <span class="links_name">Usuarios</span>
+                </a>
+                <span class="tooltip">Usuarios</span>
+            </li>
+        </ul>
+        <!--Usuario ingresado-->
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">{{_usuarioService.getIdentidad().usuario}}</div>
+                        <div class="job">{{_usuarioService.getIdentidad().rol}}</div>  
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out" (click)='logout()'></i>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar" *ngIf='!_usuarioService.getIdentidad().rol'>
+        <!--Logo-->
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bxs-news'></i>
+                <div class="logo_name">Hora Cero</div>
+            </div>
+            <i class='bx bx-menu' id="btn" type='button'></i>
+        </div>
+        <!--Opciones del menu-->
+        <ul class="nav_list">
+            <li (click)='theme(1)'>
+                <a>
+                    <i class='bx bxs-home' ></i>
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li (click)='theme(3)'>
+                <a>
+                    <i class='bx bxs-arch' ></i>
+                    <span class="links_name">Política</span>
+                </a>
+                <span class="tooltip">Política</span>
+            </li>
+            <li (click)='theme(4)'>
+                <a>
+                    <i class='bx bx-group' ></i>
+                    <span class="links_name">Social</span>
+                </a>
+                <span class="tooltip">Social</span>
+            </li>
+            <li (click)='theme(5)'>
+                <a>
+                    <i class='bx bx-baseball' ></i>
+                    <span class="links_name">Deportes</span>
+                </a>
+                <span class="tooltip">Deportes</span>
+            </li>
+            <li (click)='theme(6)'>
+                <a>
+                    <i class='bx bx-coin-stack' ></i>
+                    <span class="links_name">Economía</span>
+                </a>
+                <span class="tooltip">Economía</span>
+            </li>
+            <li (click)='theme(7)'>
+                <a>
+                    <i class='bx bx-landscape' ></i>
+                    <span class="links_name">Cultural</span>
+                </a>
+                <span class="tooltip">Cultural</span>
+            </li>
+            <li (click)='theme(8)'>
+                <a>
+                    <i class='bx bx-conversation' ></i>
+                    <span class="links_name">Farandula</span>
+                </a>
+                <span class="tooltip">Farandula</span>
+            </li>
+            <li (click)='theme(9)'>
+                <a>
+                    <i class='bx bx-atom' ></i>
+                    <span class="links_name">Ciencias</span>
+                </a>
+                <span class="tooltip">Ciencias</span>
+            </li>
+        </ul>
+        <!--Usuario ingresado-->
+        <div class="profile_content" routerLink="/login" routerLinkActive="active">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">Ingresa</div>
+                        <div class="job">Para tener más beneficios</div>  
+                    </div>
+                </div>
+                <i class='bx bx-log-in' id="log_out"></i>
+            </div>
+        </div>
+    </div>
+    
+    <!--Página activa-->
+    <div class="home_content">
+        <router-outlet></router-outlet>
+    </div>
+    <!--Ocultar o mostrar navbar-->
+    <script>
+        let btn = document.querySelector('#btn')
+        let sb = document.querySelector('.sidebar')
+    </script>
+</body>

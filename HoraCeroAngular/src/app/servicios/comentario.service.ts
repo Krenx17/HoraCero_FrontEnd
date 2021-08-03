@@ -20,15 +20,16 @@ export class ComentarioService {
   newcom(comentario: Coment): Observable<any>{
     let headersToken = this.headersvar.set('Authorization', this.getToken2())
     let data = JSON.stringify(comentario)
+    let id = this.getNoti()
 
-    return this._http.post(this.url+'/newcoment', data, {headers: headersToken})
+    return this._http.post(this.url+'/newcoment/'+id, data, {headers: headersToken})
   }
 
   editcom(comentario: Coment): Observable<any>{
     let headersToken = this.headersvar.set('Authorization', this.getToken2())
     let data = JSON.stringify(comentario)
 
-    return this._http.post(this.url+'/editcoment/'+comentario._id, data, {headers: headersToken})
+    return this._http.put(this.url+'/editcoment/'+comentario._id, data, {headers: headersToken})
   }
 
   deletcom(id: String): Observable<any>{
@@ -38,7 +39,9 @@ export class ComentarioService {
   }
 
   allcom(): Observable<any>{
-    return this._http.get(this.url+'/coments', {headers: this.headersvar})
+    let id = this.getNoti()
+
+    return this._http.get(this.url+'/coments/'+id, {headers: this.headersvar})
   }
 
   onecom(id: String): Observable<any>{
@@ -57,6 +60,16 @@ export class ComentarioService {
 
   getToken2(){
     var token2 = localStorage.getItem('token')
+    if (token2 !="undefined"){
+      this.token =token2
+    }else{
+      this.token = null
+    }
+    return this.token;
+  }
+
+  getNoti(){
+    var token2 = localStorage.getItem('noticia')
     if (token2 !="undefined"){
       this.token =token2
     }else{
