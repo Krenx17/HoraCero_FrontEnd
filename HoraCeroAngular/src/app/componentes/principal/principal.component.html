@@ -1,0 +1,27 @@
+<body>
+    <h1>Ultimas Noticias</h1>
+    <tr *ngFor=' let noti of noticia'>
+        <div class="noticia">
+            <div class="informacion">
+                <h1>{{ noti.titulo }}</h1>
+                <h6>{{ noti.genero }}</h6>
+                <p>{{ noti.texto }}</p>
+            </div>
+            <div class="info">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <i class='bx bx-calendar'>{{ noti.fecha }}</i>
+                        </div>
+                        <div class="col">
+                            <i class='bx bx-user-circle'>{{ noti.name }}</i>
+                        </div>
+                        <div class="col">
+                            <i class='bx bx-bot' (click)='idNews(noti._id)'>Ver más</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+</body>

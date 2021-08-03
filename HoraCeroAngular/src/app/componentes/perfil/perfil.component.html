@@ -1,0 +1,60 @@
+<body>
+    <h1>Mi perfil</h1>
+    <div>
+        <p>Nombre: {{ user.name }}</p>
+        <p>Usuario: {{ user.usuario }}</p>
+        <p>Rol: {{ user.rol }}</p>
+        <p>Tarjeta: {{ user.tarjeta }}</p>
+    </div>
+    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <button type="button" class="btn btn-danger" (click)="oneUser()"
+        data-bs-toggle="modal" data-bs-target="#delete">Eliminar</button>
+        <button type="button" class="btn btn-warning" (click)="oneUser()"
+        data-bs-toggle="modal" data-bs-target="#edit">Editar</button>
+      </div>
+</body>
+
+<!-- Editar Usuario -->
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="inputUser" class="form-label">User</label>
+            <input type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="usuario" #usuario="ngModel" [(ngModel)]="user.usuario">
+          </div>
+          <div class="mb-3">
+            <label for="inputName" class="form-label">Nombre</label>
+            <input type="user" class="form-control" id="inputName" aria-describedby="emailHelp" name="name" #name="ngModel" [(ngModel)]="user.name">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="editUser()">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Eliminar -->
+  <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar torneo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Estás seguro de eliminar al usuario, {{user.usuario}}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-primary" (click)="deleteUser(user._id)">Sí, eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,34 @@
+.noticia{
+    background-color: #fafafa;
+    margin: 1rem;
+    padding: 1rem;
+    border: 5px solid #ccc;
+}
+
+.info{
+    margin: 10px;
+    background: #11101d;
+    border-radius: 5px;
+    color: #fff;
+    size: 12px;
+    text-align: center;
+}
+
+.informacion{
+    background: #1d1b31;
+    border-radius: 5px;
+    margin: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+.informacion h6{
+    text-decoration: underline dotted red;
+}
+
+.informacion p{
+    text-align: justify;
+    overflow: hidden;
+    width: 90%;
+    height: 75px;
+}

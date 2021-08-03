@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+    height: 100%;
+    overflow-y: auto;
+    background: #bddbdb;
+}
+
+body::-webkit-scrollbar{
+    width: 10px;
+    background: #11101d;
+}
+
+body::-webkit-scrollbar-thumb{
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border-right: 2px solid;
+}
+
+h1{
+    text-align: center;
+    background: rgba(0, 0, 0, 0.333);
+    border-radius: 10;
+    text-decoration: underline;
+}

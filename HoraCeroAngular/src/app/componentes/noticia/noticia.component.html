@@ -1,0 +1,139 @@
+<body>
+    <div class="noticia">
+        <div>
+            <h1>{{ noti.titulo }}</h1>
+            <h5>{{ noti.genero }}</h5>
+        </div>
+        <div class="noti">{{ noti.texto }}</div>
+        <div class="datos">
+            <div><i class='bx bx-user-circle'>{{ noti.name }}</i></div>
+            <div><i class='bx bx-calendar'>{{ noti.fecha }}</i></div>
+        </div>
+        <div *ngIf='_userService.getIdentidad().rol=="Admin" || _userService.getIdentidad()._id==noti.creador'>
+            <button type="button"class="btn btn-danger" (click)='noticia()' 
+            data-bs-toggle="modal" data-bs-target="#delete">Eliminar</button>
+            <button type="button" class="btn btn-warning" (click)='noticia()' 
+            data-bs-toggle="modal" data-bs-target="#edit">Editar</button>
+        </div>
+    </div>
+    <div id="comentarios">
+        <div *ngIf='_userService.getIdentidad().rol=="Admin" ||
+         _userService.getIdentidad().rol=="Escritor" ||
+         _userService.getIdentidad().rol=="User"'>
+         <a class="register" data-bs-toggle="modal" data-bs-target="#comentar">Agregar comentario</a>
+        </div>
+        <div class="coments">
+          <div class="row align-items-end" *ngFor="let coment of comentarios">
+            <div class="col"></div>
+            <div class="col" id="comentario">
+                <td class="usuario"><i class='bx bx-comment-detail' >{{ coment.name }}</i></td>
+                <div class="fecha">{{ coment.fecha }}</div>
+                <div class="coment">{{ coment.comentario }}</div>
+            </div>
+            <div class="col" id='opciones' *ngIf='_userService.getIdentidad().rol=="Admin" ||
+            _userService.getIdentidad().rol=="Escritor" ||
+            _userService.getIdentidad()._id==coment.user'>
+                <button class="btn btn-warning" *ngIf='_userService.getIdentidad()._id==coment.user'
+                data-bs-toggle="modal" data-bs-target="#editcoment" (click)='onecom(coment._id)'>Editar</button>
+                <button class="btn btn-danger" *ngIf='_userService.getIdentidad().rol=="Admin" ||
+                _userService.getIdentidad().rol=="Escritor" ||
+                _userService.getIdentidad()._id==coment.user'
+                data-bs-toggle="modal" data-bs-target="#deletecoment" (click)='onecom(coment._id)'>Eliminar</button>
+            </div>
+            <div class="col"></div>
+        </div>
+        </div>
+    </div>
+</body>
+
+<!-- Editar -->
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="mb-3">
+            <label for="inputUser" class="form-label">Titulo</label>
+            <input type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="titulo" #titulo="ngModel" [(ngModel)]="noti.titulo">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Temas</span>
+          <select class="form-select"  name="genero" #genero="ngModel" [(ngModel)]="noti.genero">
+            <option  *ngFor="let tema of temas" [value]="tema.name" >{{ tema.name }}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+            <label for="inputUser" class="form-label">Noticia</label>
+            <input type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="texto" #texto="ngModel" [(ngModel)]="noti.texto">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="editNoti()">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+</div>
+  
+<!-- Eliminar -->
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Noticia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        ¿Estás seguro de eliminar al usuario, {{noti.titulo}}?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" (click)="deletNoti(noti._id)">Sí, eliminar</button>
+    </div>
+    </div>
+</div>
+</div>
+
+<!-- Comentar -->
+<div class="modal fade" id="comentar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="mb-3">
+            <label for="inputUser" class="form-label">Comentario</label>
+            <input type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="comentario" #comentario="ngModel" [(ngModel)]="coment.comentario">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="newCom()">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Editar Comentario -->
+<div class="modal fade" id="editcoment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="mb-3">
+            <label for="inputUser" class="form-label">Comentario</label>
+            <input type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="comentario" #comentario="ngModel" [(ngModel)]="coment.comentario">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="newCom()">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--Eliminar Comentario -->
+<div class="modal fade" id="deletecoment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="mb-3">
+            ¿Estás seguro de eliminar el comentario?    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="deletCom(coment._id)">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+</div>

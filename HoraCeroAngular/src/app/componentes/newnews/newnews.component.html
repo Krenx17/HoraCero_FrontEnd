@@ -1,0 +1,20 @@
+<body>
+    <h1>Escribe una nueva noticia</h1>
+    <div>
+        <div class="mb-3">
+            <label for="inputUser" class="form-label">Titulo</label>
+            <input type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="titulo" #titulo="ngModel" [(ngModel)]="noti.titulo">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Temas</span>
+          <select class="form-select"  name="genero" #genero="ngModel" [(ngModel)]="noti.genero">
+            <option  *ngFor="let tema of temas" [value]="tema.name" >{{ tema.name }}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+            <label for="inputUser" class="form-label">Noticia</label>
+            <input type="user" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="texto" #texto="ngModel" [(ngModel)]="noti.texto">
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)='crear()'>Subir Noticia</button>
+</body>
